@@ -17,4 +17,5 @@ export class Home {
     { id: '2', unitPrice: '0.8', name: 'Pão', amount: 1 },
     { id: '3', unitPrice: '0.2', name: 'Ovos', amount: 12 }
   ];
+  
 }
