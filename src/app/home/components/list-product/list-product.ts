@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from '../../../interfaces/product.interface';
+import { Store } from '@ngrx/store';
+import { LoadProducts } from '../../../store/product.actions';
 
 @Component({
   selector: 'app-list-product',
@@ -7,12 +9,16 @@ import { IProduct } from '../../../interfaces/product.interface';
   templateUrl: './list-product.html',
   styleUrl: './list-product.scss',
 })
-export class ListProduct {
-
+export class ListProduct implements OnInit {
   @Input() products: IProduct[] = [];
+
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(LoadProducts());
+  }
 
   public deleteProduct(id: string): void {
     console.log(`Produto com id ${id} excluído!`);
   }
-  
 }
