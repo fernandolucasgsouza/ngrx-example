@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from '../interfaces/product.interface';
-import { ListProduct } from "./components/list-product/list-product";
+import { ListProduct } from './components/list-product/list-product';
 import { CreateProduct } from './components/create-product/create-product';
+import { select, Store } from '@ngrx/store';
+import { selectProducts } from '../store/product.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [CreateProduct, ListProduct],
+  imports: [AsyncPipe, CreateProduct, ListProduct],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements OnInit {
+  public products$: Observable<IProduct[]> = new Observable<IProduct[]>();
 
-  public products: IProduct[] = [
-    { id: '1', unitPrice: '1.5', name: 'Leite', amount: 2 },
-    { id: '2', unitPrice: '0.8', name: 'Pão', amount: 1 },
-    { id: '3', unitPrice: '0.2', name: 'Ovos', amount: 12 }
-  ];
-  
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.products$ = this.store.pipe(select(selectProducts));
+  }
 }

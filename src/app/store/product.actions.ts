@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+
 import { IProductState } from "./product.state";
 
 export const LoadProducts = createAction('[Product] Load Products');
