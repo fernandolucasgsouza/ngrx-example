@@ -15,7 +15,6 @@ export class ListProduct implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(LoadProducts());
   }
 
   public deleteProduct(id: string): void {

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 
 import { IProduct } from '../interfaces/product.interface';
 import { ListProduct } from './components/list-product/list-product';
@@ -7,19 +7,21 @@ import { CreateProduct } from './components/create-product/create-product';
 import { select, Store } from '@ngrx/store';
 import { selectProducts } from '../store/product.selectors';
 import { Observable } from 'rxjs';
+import { LoadProducts } from '../store/product.actions';
 
 @Component({
   selector: 'app-home',
   imports: [AsyncPipe, CreateProduct, ListProduct],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home implements OnInit {
-  public products$: Observable<IProduct[]> = new Observable<IProduct[]>();
+export class HomeComponent implements OnInit {
+  private store = inject(Store);
 
-  constructor(private store: Store) {}
+  public products$: Observable<IProduct[]> = this.store.select(selectProducts);
 
   ngOnInit(): void {
-    this.products$ = this.store.pipe(select(selectProducts));
+    this.store.dispatch(LoadProducts());
   }
 }

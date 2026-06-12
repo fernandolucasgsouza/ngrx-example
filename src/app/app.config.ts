@@ -6,6 +6,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { productReducer } from './store/product.reducer';
 
 import { routes } from './app.routes';
+import { provideEffects } from '@ngrx/effects';
+import * as fromProductEffects from './store/product.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +23,6 @@ export const appConfig: ApplicationConfig = {
       trace: false,
       connectInZone: true,
     }),
+    provideEffects([fromProductEffects]),
   ],
 };
