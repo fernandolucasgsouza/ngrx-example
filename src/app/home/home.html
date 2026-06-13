@@ -8,9 +8,7 @@
             <app-create-product></app-create-product>
         </div>
         <div class="col-12">
-            @if (products$ | async; as products) {
-                <app-list-product [products]="products"></app-list-product>
-            }
+            <app-list-product></app-list-product>
         </div>
     </div>
 </div>

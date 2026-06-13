@@ -1,5 +1,5 @@
 <ul>
-  @for (product of products; track product.id) {
+  @for (product of (products$ | async); track product.id) {
     <li class="mt-2">
       <span>{{ product.amount }}&nbsp;</span>
       <strong>{{ product.name }}</strong>
