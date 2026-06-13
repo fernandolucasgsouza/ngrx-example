@@ -12,8 +12,8 @@ import { LoadProducts } from '../store/product.actions';
 @Component({
   selector: 'app-home',
   imports: [AsyncPipe, CreateProduct, ListProduct],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home.html',
+  styleUrls: ['./home.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
