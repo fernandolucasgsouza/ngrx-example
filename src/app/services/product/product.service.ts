@@ -9,9 +9,9 @@ import { IProduct } from '../../interfaces/product.interface';
 export class ProductService {
 
   private products: IProduct[] = [
-    { id: '1', unitPrice: '1.5', name: 'Leite', amount: 2 },
-    { id: '2', unitPrice: '0.8', name: 'Pão', amount: 1 },
-    { id: '3', unitPrice: '0.5', name: 'Ovos', amount: 13 }
+    { id: 1, unitPrice: '1.5', name: 'Leite', amount: 2 },
+    { id: 2, unitPrice: '0.8', name: 'Pão', amount: 1 },
+    { id: 3, unitPrice: '0.5', name: 'Ovos', amount: 12 }
   ];
 
   public getProducts(): Observable<IProduct[]> {
