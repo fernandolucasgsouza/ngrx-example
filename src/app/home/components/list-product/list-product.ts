@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 
-import { LoadProducts } from '../../../store/product.actions';
 import { IProduct } from '../../../interfaces/product.interface';
-import { selectProducts } from '../../../store/product.selectors';
+import { LoadProducts } from '../../../store/product/product.actions';
+import { selectProducts } from '../../../store/product/product.selectors';
 
 @Component({
   selector: 'app-list-product',

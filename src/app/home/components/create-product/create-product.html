@@ -1,11 +1,25 @@
-<form class="row row-cols-lg-auto g-3 align-items-center mb-4 mt-4">
+<form [formGroup]="form" class="row row-cols-lg-auto g-3 align-items-center mb-4 mt-4">
     <div class="col-6">
-        <input type="text" class="form-control" id="name" placeholder="Nome do produto">
+        <input 
+            type="text" 
+            class="form-control" id="name" 
+            placeholder="Nome do produto" 
+            formControlName="name" >
     </div>
     <div class="col-3">
-        <input type="text" class="form-control" id="amount" placeholder="Quantidade">
+        <input 
+            type="text" 
+            class="form-control" id="amount" 
+            placeholder="Quantidade" 
+            formControlName="amount" >
     </div>
     <div class="col-3">
-        <button type="button" class="btn btn-primary" (click)="createProduct()">Adicionar</button>
+        <button 
+            type="button" 
+            class="btn btn-primary" 
+            [disabled]="!form.valid"
+            (click)="createProduct()">
+            Adicionar
+        </button>
     </div>
 </form>

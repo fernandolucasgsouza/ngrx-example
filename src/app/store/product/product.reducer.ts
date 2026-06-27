@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { IProductState } from './product.state';
+import { IProductState } from './product.state.interface';
 import {
     LoadProducts,
     LoadProductsSuccess,
@@ -12,11 +12,12 @@ import {
     RemoveProductSuccess,
     RemoveProductError,
 } from './product.actions';
-import { IProduct } from '../interfaces/product.interface';
+import { IProduct } from '../../interfaces/product.interface';
 
 export const initialProductState: IProductState = {
     data: [],
     isLoading: false,
+    isSaving: false,
     error: null,
 };
 
@@ -40,34 +41,34 @@ export const productReducer = createReducer(
     })),
     on(AddProduct, (state) => ({
         ...state,
-        isLoading: true,
+        isSaving: true,
         error: null,
     })),
     on(AddProductSuccess, (state, { payload }) => ({
         ...state,
         data: [...state.data, payload],
-        isLoading: false,
+        isSaving: false,
         error: null,
     })),
     on(AddProductError, (state, { error }) => ({
         ...state,
-        isLoading: false,
+        isSaving: false,
         error,
     })),
       on(RemoveProduct, (state) => ({
         ...state,
-        isLoading: true,
+        isSaving: true,
         error: null,
     })),
     on(RemoveProductSuccess, (state, { id }) => ({
         ...state,
         data: removeProductInState(state.data, id),
-        isLoading: false,
+        isSaving: false,
         error: null,
     })),
     on(RemoveProductError, (state, { error }) => ({
         ...state,
-        isLoading: false,
+        isSaving: false,
         error,
     })),
 );

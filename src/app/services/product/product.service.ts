@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { IProduct } from '../../interfaces/product.interface';
+import { IProduct, IProductBase } from '../../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +16,11 @@ export class ProductService {
 
   public getProducts(): Observable<IProduct[]> {
     return of(this.products);
+  }
+
+  public addProduct(product: IProductBase): Observable<number> {
+   const id = this.products.length + 1;
+   this.products = [...this.products, { ...product, id }];
+    return of(id);
   }
 }
