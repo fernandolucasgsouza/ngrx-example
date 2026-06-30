@@ -23,4 +23,9 @@ export class ProductService {
    this.products = [...this.products, { ...product, id }];
     return of(id);
   }
+
+  public RemoveProduct(product:IProduct): Observable<void> {
+    this.products = this.products.filter(p => p.id !== product.id);
+    return of();
+  }
 }

@@ -3,7 +3,7 @@
     <li class="mt-2">
       <span>{{ product.amount }}&nbsp;</span>
       <strong>{{ product.name }}</strong>
-      <button type="button" class="btn btn-danger ms-4" (click)="deleteProduct(product.id)">Excluir</button>
+      <button type="button" class="btn btn-danger ms-4" (click)="deleteProduct(product)">Excluir</button>
     </li>
   } @empty {
     <p>Nenhum produto encontrado na lista.</p>

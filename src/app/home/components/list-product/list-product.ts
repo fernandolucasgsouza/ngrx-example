@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 
 import { IProduct } from '../../../interfaces/product.interface';
-import { LoadProducts } from '../../../store/product/product.actions';
+import { LoadProducts, RemoveProduct } from '../../../store/product/product.actions';
 import { selectProducts } from '../../../store/product/product.selectors';
 
 @Component({
@@ -22,7 +22,8 @@ export class ListProduct implements OnInit {
     this.store.dispatch(LoadProducts());
   }
 
-  public deleteProduct(id: string): void {
-    console.log(`Produto com id ${id} excluído!`);
+  public deleteProduct(product: IProduct): void {
+    this.store.dispatch(RemoveProduct({ payload: product }));
+    console.log(`Produto com id ${product.id} excluído!`);
   }
 }

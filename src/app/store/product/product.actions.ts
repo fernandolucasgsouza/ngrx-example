@@ -10,6 +10,6 @@ export const AddProduct = createAction('[Create Product Component] Add Product',
 export const AddProductSuccess = createAction('[Create Product Effect] Add Product Success', props<{ payload: IProduct }>());
 export const AddProductError = createAction('[Create Product Effect] Add Product Error', props<{ error: any }>());
 
-export const RemoveProduct = createAction('[List Product Component] Remove Product', props<{ id: number }>());
-export const RemoveProductSuccess = createAction('[List Product Effect] Remove Product Success', props<{ id: number }>());
-export const RemoveProductError = createAction('[List Product Effect] Remove Product Error', props<{ error: any }>());
+export const RemoveProduct = createAction('[List Product Component] Remove Product', props<{ payload: IProduct }>());
+export const RemoveProductSuccess = createAction('[List Product Effect] Remove Product Success', props<{ payload: IProduct }>());
+export const RemoveProductError = createAction('[List Product Effect] Remove Product Error', props<{ payload: IProduct, error: any }>());

@@ -10,6 +10,9 @@ import {
     LoadProducts,
     LoadProductsError,
     LoadProductsSuccess,
+    RemoveProduct,
+    RemoveProductError,
+    RemoveProductSuccess,
 } from './product.actions';
 
 export const LoadProductsEffect = createEffect(
@@ -34,6 +37,20 @@ export const AddProductEffect = createEffect(
                 service.addProduct(payload).pipe(
                     map((id) => AddProductSuccess({ payload: { ...payload, id } })),
                     catchError((error) => of(AddProductError({ error }))),
+                ),
+            ),
+        ),
+    { functional: true },
+);
+
+export const RemoveProductEffect = createEffect(
+    (actions$ = inject(Actions), service = inject(ProductService)) =>
+        actions$.pipe(
+            ofType(RemoveProduct),
+            mergeMap(({payload}) =>
+                service.RemoveProduct(payload).pipe(
+                    map(() => RemoveProductSuccess({ payload })),
+                    catchError((error) => of(RemoveProductError({ payload, error }))),
                 ),
             ),
         ),

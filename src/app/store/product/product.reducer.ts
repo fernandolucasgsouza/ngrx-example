@@ -60,16 +60,16 @@ export const productReducer = createReducer(
         isSaving: true,
         error: null,
     })),
-    on(RemoveProductSuccess, (state, { id }) => ({
+    on(RemoveProductSuccess, (state, { payload }) => ({
         ...state,
-        data: removeProductInState(state.data, id),
+        data: state.data.filter((product: IProduct) => product.id !== payload.id),
         isSaving: false,
         error: null,
     })),
-    on(RemoveProductError, (state, { error }) => ({
+    on(RemoveProductError, (state, { payload, error }) => ({
         ...state,
+        data: [...state.data, payload],
         isSaving: false,
         error,
     })),
 );
-const removeProductInState = (data: IProduct[], id: number) => data.filter(item => item.id !== id);
