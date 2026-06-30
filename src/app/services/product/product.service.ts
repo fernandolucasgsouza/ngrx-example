@@ -24,8 +24,9 @@ export class ProductService {
     return of(id);
   }
 
-  public RemoveProduct(product:IProduct): Observable<void> {
-    this.products = this.products.filter(p => p.id !== product.id);
-    return of();
+  public RemoveProduct(product:IProduct): Observable<number> {
+    const idCurrentProduct = product.id;
+    this.products = this.products.filter(p => p.id !== idCurrentProduct);
+    return of(idCurrentProduct);
   }
 }
