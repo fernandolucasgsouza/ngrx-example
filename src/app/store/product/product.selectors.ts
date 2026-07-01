@@ -13,6 +13,16 @@ export const selectIsLoading = createSelector(
   (state: IProductState) => state.isLoading
 );
 
+export const selectIsSaving = createSelector(
+  loadProductsState,
+  (state: IProductState) => state.isSaving
+);
+
+export const selectIsDeleting = createSelector(
+  loadProductsState,
+  (state: IProductState) => state.isDeleting
+);
+
 export const selectIsError = createSelector(
   loadProductsState,
   (state: IProductState) => state.error

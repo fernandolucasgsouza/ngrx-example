@@ -4,6 +4,6 @@ export interface IProductState {
     data: IProduct[];
     isLoading: boolean;
     isSaving: boolean;
+    isDeleting: boolean;
     error: any;
 }
-

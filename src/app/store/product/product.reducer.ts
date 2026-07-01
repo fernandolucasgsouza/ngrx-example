@@ -18,6 +18,7 @@ export const initialProductState: IProductState = {
     data: [],
     isLoading: false,
     isSaving: false,
+    isDeleting: false,
     error: null,
 };
 
@@ -57,19 +58,19 @@ export const productReducer = createReducer(
     })),
       on(RemoveProduct, (state) => ({
         ...state,
-        isSaving: true,
+        isDeleting: true,
         error: null,
     })),
     on(RemoveProductSuccess, (state, { payload }) => ({
         ...state,
         data: state.data.filter((product: IProduct) => product.id !== payload.id),
-        isSaving: false,
+        isDeleting: false,
         error: null,
     })),
     on(RemoveProductError, (state, { payload, error }) => ({
         ...state,
         data: [...state.data, payload],
-        isSaving: false,
+        isDeleting: false,
         error,
     })),
 );

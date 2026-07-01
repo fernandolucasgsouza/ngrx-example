@@ -1,11 +1,25 @@
 <ul>
-  @for (product of (products$ | async); track product.id) {
-    <li class="mt-2">
-      <span>{{ product.amount }}&nbsp;</span>
-      <strong>{{ product.name }}</strong>
-      <button type="button" class="btn btn-danger ms-4" (click)="deleteProduct(product)">Excluir</button>
-    </li>
-  } @empty {
-    <p>Nenhum produto encontrado na lista.</p>
-  }
+    @for (product of products$ | async; track product.id) {
+        <li class="mt-2">
+            <span>{{ product.amount }}&nbsp;</span>
+            <strong>{{ product.name }}</strong>
+            <button type="button" class="btn btn-danger ms-4" (click)="deleteProduct(product)">
+                Excluir
+            </button>
+        </li>
+    } @empty {
+        <p>Nenhum produto encontrado na lista.</p>
+    }
 </ul>
+<div class="row">
+    <div class="col-12">
+        @if (isDeleting$ | async) {
+          <div class="alert alert-info" role="alert">Excluindo produto...</div>
+        }
+        @if (isSaving$ | async) {            
+            <div class="alert alert-info" role="alert">
+                Salvando produto...
+            </div>
+        }
+    </div>
+</div>

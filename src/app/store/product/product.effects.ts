@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, delay, map, mergeMap, of, switchMap } from 'rxjs';
 import { ProductService } from '../../services/product/product.service';
 import {
     AddProduct,
@@ -35,6 +35,7 @@ export const AddProductEffect = createEffect(
             ofType(AddProduct),
             mergeMap(({payload}) =>
                 service.addProduct(payload).pipe(
+                    delay(1000), // Simula um atraso de 1 segundo para a adição do produto
                     map((id) => AddProductSuccess({ payload: { ...payload, id } })),
                     catchError((error) => of(AddProductError({ error }))),
                 ),
@@ -49,6 +50,7 @@ export const RemoveProductEffect = createEffect(
             ofType(RemoveProduct),
             mergeMap(({payload}) =>
                 service.RemoveProduct(payload).pipe(
+                    delay(1000), // Simula um atraso de 1 segundo para a exclusão do produto
                     map(() => RemoveProductSuccess({ payload })),
                     catchError((error) => of(RemoveProductError({ payload, error }))),
                 ),
